@@ -152,8 +152,7 @@ class LinkedList {
             this.head = this.head.nextNode;
         } else {
             const prevNode = this.at(index - 1);
-            const followingNode = this.at(index + 1);
-            prevNode.nextNode = followingNode;
+            prevNode.nextNode = prevNode.nextNode.nextNode;
         }
         this.length--;
     }
@@ -166,28 +165,5 @@ class Node {
         this.nextNode = nextNode;
     }
 }
-
-let myLinkedList = new LinkedList();
-
-
-
-myLinkedList.append(2);
-myLinkedList.prepend("HEAD");
-myLinkedList.append(3);
-myLinkedList.append(4);
-myLinkedList.append("POP ME");
-// console.log(myLinkedList.toString());
-// myLinkedList.pop();
-// myLinkedList.append("TAIL");
-// console.log(myLinkedList.toString());
-
-// console.log(myLinkedList.listHead());
-// console.log(myLinkedList.find(4));
-
-console.log(myLinkedList.size())
-console.log(myLinkedList.toString());
-myLinkedList.removeAt(3)
-console.log(myLinkedList.toString());
-console.log(myLinkedList.size(3))
 
 
