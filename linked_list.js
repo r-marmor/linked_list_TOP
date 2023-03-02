@@ -43,6 +43,7 @@ class LinkedList {
     }
 
     tail() {
+        // checks if there's at least 1 node
         if (this.head == null) {
             return "the list is empty";
         } else {
@@ -55,7 +56,9 @@ class LinkedList {
     }
 
     at(index) {
+        // checks if the index is correct
         if (index < 0 || index > this.length - 1) return `index must be between 0 and ${this.length - 1}`;
+        // error msg if there is no node in the list
         if (this.head == null) {
             return "the list is empty";
         } else {
@@ -82,7 +85,23 @@ class LinkedList {
     }
 
     contains(value) {
-        if (this.head == null) return "the list is empty";
+                let pointer = this.head;
+
+                for (let index = 0; index < this.length; index++) {
+                    if (pointer.value == value) return true;
+                    pointer = pointer.nextNode;
+                }
+                return false; 
+    }
+
+    find(value) {
+        let pointer = this.head;
+
+        for (let index = 0; index < this.length; index++) {
+            if (pointer.value == value) return index;
+            pointer = pointer.nextNode;
+        }
+        return null;
     }
 
 }
@@ -99,18 +118,8 @@ let myLinkedList = new LinkedList();
 
 myLinkedList.append(1);
 myLinkedList.append(2);
-myLinkedList.append("tail");
-myLinkedList.prepend("head : prepended node");
-myLinkedList.append("POP ME");
+myLinkedList.append(3);
+myLinkedList.append(4);
+myLinkedList.append(5);
 
-console.log(myLinkedList.tail())
-myLinkedList.pop()
-console.log(myLinkedList.tail())
-myLinkedList.pop()
-console.log(myLinkedList.tail())
-myLinkedList.pop()
-console.log(myLinkedList.tail())
-myLinkedList.pop()
-console.log(myLinkedList.tail())
-myLinkedList.pop()
-console.log(myLinkedList.tail())
+console.log(myLinkedList.find(5));
