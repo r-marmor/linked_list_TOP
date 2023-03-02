@@ -44,9 +44,8 @@ class LinkedList {
 
     tail() {
         // checks if there's at least 1 node
-        if (this.head == null) {
-            return "the list is empty";
-        } else {
+        if (this.head == null) return null ;
+        else {
             let pointer = this.head;
             while (pointer.nextNode != null) {
             pointer = pointer.nextNode;
@@ -57,18 +56,20 @@ class LinkedList {
 
     at(index) {
         // checks if the index is correct
-        if (index < 0 || index > this.length - 1) return `index must be between 0 and ${this.length - 1}`;
+        if (index < 0 || index > this.length - 1) {
+            console.error(`index must be between 0 and ${this.length - 1}`);
+            return;
+        }
         // error msg if there is no node in the list
-        if (this.head == null) {
-            return "the list is empty";
-        } else {
-            let pointer = this.head;
-            for (let i = 0; i <= index; i++) {
-                if (index == i) return pointer;
-                pointer = pointer.nextNode;
+        if (this.head == null) return null;
+            else {
+                let pointer = this.head;
+                for (let i = 0; i <= index; i++) {
+                    if (index == i) return pointer;
+                    pointer = pointer.nextNode;
+                }
             }
         }
-    }
 
     pop() {
         // Case there's no node 
