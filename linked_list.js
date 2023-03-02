@@ -117,6 +117,47 @@ class LinkedList {
             return result += "null";
     }
 
+    insertAt(value, index) {
+        if (this.head == null) {
+        return null;
+        }
+        if (index == 0) {
+            this.prepend(value);
+            return;
+        }
+        if (index == this.length - 1) {
+            this.append(value);
+            return;
+        }
+
+        const prevNode = this.at(index - 1);
+        const atCurrentIndex = this.at(index);
+        const newNode = new Node(value);
+        prevNode.nextNode = newNode;
+        this.length++;
+        newNode.nextNode = atCurrentIndex;
+    }
+
+    removeAt(index) {
+        if (this.head == null) return;
+        if (index < 0 || index > this.length - 1)  {
+            console.error("Invalid index");
+            return;
+        }
+        if (index == this.length - 1) {
+            this.pop();
+            return;
+        }
+        if (index == 0) {
+            this.head = this.head.nextNode;
+        } else {
+            const prevNode = this.at(index - 1);
+            const followingNode = this.at(index + 1);
+            prevNode.nextNode = followingNode;
+        }
+        this.length--;
+    }
+
 }
 
 class Node {
@@ -130,11 +171,11 @@ let myLinkedList = new LinkedList();
 
 
 
-// myLinkedList.append(2);
-// myLinkedList.prepend("HEAD");
-// myLinkedList.append(3);
-// myLinkedList.append(4);
-// myLinkedList.append("POP ME");
+myLinkedList.append(2);
+myLinkedList.prepend("HEAD");
+myLinkedList.append(3);
+myLinkedList.append(4);
+myLinkedList.append("POP ME");
 // console.log(myLinkedList.toString());
 // myLinkedList.pop();
 // myLinkedList.append("TAIL");
@@ -142,3 +183,11 @@ let myLinkedList = new LinkedList();
 
 // console.log(myLinkedList.listHead());
 // console.log(myLinkedList.find(4));
+
+console.log(myLinkedList.size())
+console.log(myLinkedList.toString());
+myLinkedList.removeAt(3)
+console.log(myLinkedList.toString());
+console.log(myLinkedList.size(3))
+
+
